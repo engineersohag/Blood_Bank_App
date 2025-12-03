@@ -274,63 +274,6 @@
                 icon.classList.add('fa-eye');
             }
         });
-        
-        // Form submission with validation
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            event.stopPropagation();
-            
-            // Check form validity
-            if (!form.checkValidity()) {
-                form.classList.add('was-validated');
-                return;
-            }
-            
-            // Simulate form submission
-            const submitBtn = form.querySelector('.btn-submit');
-            const originalText = submitBtn.innerHTML;
-            
-            // Show loading state
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Creating Account...';
-            submitBtn.classList.add('loading');
-            submitBtn.disabled = true;
-            
-            // In a real application, you would submit the form data here
-            // For demo purposes, we'll simulate an API call
-            setTimeout(() => {
-                alert('Account created successfully! Welcome to Blood App ❤️');
-                
-                // Reset form
-                form.classList.remove('was-validated');
-                form.reset();
-                previewContainer.style.display = 'none';
-                
-                // Reset button
-                submitBtn.innerHTML = originalText;
-                submitBtn.classList.remove('loading');
-                submitBtn.disabled = false;
-                
-                // Redirect to login (simulated)
-                // window.location.href = "{{ route('user.login') }}";
-            }, 2000);
-        });
-        
-        // Real-time validation
-        const inputs = form.querySelectorAll('input, select, textarea');
-        inputs.forEach(input => {
-            input.addEventListener('input', function() {
-                if (this.checkValidity()) {
-                    this.classList.remove('is-invalid');
-                    this.classList.add('is-valid');
-                } else {
-                    this.classList.remove('is-valid');
-                }
-            });
-        });
-        
-        // Set max date for last donation to today
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('last_blood_donate').max = today;
     });
 </script>
 @endpush

@@ -66,14 +66,15 @@
                 <p>Fill in your details to join our donor network</p>
             </div>
 
-            <form action="#" method="POST" enctype="multipart/form-data" class="row g-3 needs-validation">
-                
+            <form action="{{ route('user.signup.store') }}" method="POST" enctype="multipart/form-data" class="row g-3 needs-validation">
+                @csrf
+
                 <!-- Name -->
                 <div class="col-md-6">
                     <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
                     </div>
                 </div>
 
@@ -82,7 +83,7 @@
                     <label for="email" class="form-label">Email Address <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                        <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
                     </div>
                 </div>
 
@@ -91,7 +92,7 @@
                     <label for="phone" class="form-label">Phone Number <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                        <input type="text" class="form-control" id="phone" placeholder="Enter your phone number" required>
+                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your phone number" required>
                     </div>
                 </div>
 
@@ -100,7 +101,7 @@
                     <label for="optional_number" class="form-label">Alternative Number</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                        <input type="text" class="form-control" id="optional_number" placeholder="Optional phone number">
+                        <input type="text" class="form-control" id="optional_number" name="optional_number" placeholder="Optional phone number">
                     </div>
                 </div>
 
@@ -109,7 +110,7 @@
                     <label for="present_address" class="form-label">Present Address <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-home"></i></span>
-                        <textarea class="form-control" id="present_address" rows="2" placeholder="Enter your complete address" required></textarea>
+                        <textarea class="form-control" id="present_address" name="present_address" rows="2" placeholder="Enter your complete address" required></textarea>
                     </div>
                 </div>
 
@@ -118,7 +119,7 @@
                     <label for="blood_group" class="form-label">Blood Group <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-tint"></i></span>
-                        <select class="form-select" id="blood_group" required>
+                        <select class="form-select" id="blood_group" name="blood_group" required>
                             <option value="">Select Blood Group</option>
                             <option>A+</option>
                             <option>A-</option>
@@ -137,17 +138,17 @@
                     <label for="weight" class="form-label">Weight (kg) <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-weight"></i></span>
-                        <input type="text" class="form-control" id="weight" placeholder="00.00" required>
+                        <input type="text" class="form-control" id="weight" name="weight" placeholder="00.00" required>
                         <span class="input-group-text">kg</span>
                     </div>
                 </div>
 
                 <!-- Last Donate -->
                 <div class="col-md-4">
-                    <label for="last_blood_donate" class="form-label">Last Blood Donation <span class="text-danger">*</span></label>
+                    <label for="last_blood_donate" class="form-label">Last Blood Donation</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                        <input type="date" class="form-control" id="last_blood_donate">
+                        <input type="date" class="form-control" id="last_blood_donate" name="last_blood_donate">
                     </div>
                 </div>
 
@@ -160,7 +161,7 @@
                             <span>Click to upload profile photo</span>
                             <small>JPG, PNG or GIF (Max 2MB)</small>
                         </label>
-                        <input type="file" class="form-control" id="photo" accept="image/*">
+                        <input type="file" class="form-control" id="photo" name="photo" accept="image/*">
                     </div>
                     
                     <div class="image-preview" id="imagePreviewContainer">
@@ -174,7 +175,7 @@
                     <label for="loginPassword" class="form-label">Password <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                        <input type="password" class="form-control" id="loginPassword" placeholder="Create a strong password" required>
+                        <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Create a strong password" required>
                         <span class="input-group-text" id="toggleLoginPassword">
                             <i class="fas fa-eye"></i>
                         </span>
@@ -186,7 +187,7 @@
                     <label for="confirmPassword" class="form-label">Confirm Password <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password" required>
+                        <input type="password" class="form-control" id="confirmPassword" name="password_confirmation" placeholder="Confirm password" required>
                     </div>
                 </div>
 
@@ -213,6 +214,7 @@
                     Already have an account? <a href="{{ route('user.login') }}">Sign in here</a>
                 </div>
             </form>
+
         </div>
     </div>
 </div>

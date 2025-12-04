@@ -15,17 +15,16 @@ class AuthController extends Controller
     }
     public function signupStore(Request $request){
         $validated = $request->validate([
-            'name'              => 'required|string|max=255',
+            'name'              => 'required|string',
             'email'             => 'required|email|unique:users,email',
             'phone'             => 'required|string|max:20',
             'optional_number'   => 'nullable|string|max:20',
             'present_address'   => 'required|string',
             'blood_group'       => 'required|string',
             'weight'            => 'required|numeric',
-            'last_blood_donate' => 'required|date',
+            'last_blood_donate' => 'nullable|date',
             'photo'             => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
             'password'          => 'required|min:6|confirmed',
-            'documents'         => 'nullable|array',
         ]);
 
         // PHOTO UPLOAD
@@ -54,7 +53,7 @@ class AuthController extends Controller
         ]);
 
         // REDIRECT WITH SUCCESS
-        return redirect()->back()->with('success', 'Account created successfully!');
+        return redirect()->route('user.login')->with('success', 'Account created successfully! Login Now.');
 
     }
 }

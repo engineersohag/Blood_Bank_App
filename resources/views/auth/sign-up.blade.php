@@ -74,8 +74,13 @@
                     <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Enter your name" required value="{{ old('name') }}">
                     </div>
+                    @error('name')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <!-- Email -->
@@ -83,8 +88,13 @@
                     <label for="email" class="form-label">Email Address <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                        <input type="email" class="form-control @error('name') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" placeholder="Enter your email" required>
                     </div>
+                    @error('email')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <!-- Phone -->
@@ -92,8 +102,13 @@
                     <label for="phone" class="form-label">Phone Number <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your phone number" required>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="phone" name="phone" value="{{ old('phone') }}" placeholder="Enter your phone number" required>
                     </div>
+                    @error('phone')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <!-- Optional Phone -->
@@ -101,8 +116,13 @@
                     <label for="optional_number" class="form-label">Alternative Number</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                        <input type="text" class="form-control" id="optional_number" name="optional_number" placeholder="Optional phone number">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="optional_number" value="{{ old('optional_number') }}" name="optional_number" placeholder="Optional phone number">
                     </div>
+                    @error('optional_number')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <!-- Present Address -->
@@ -110,8 +130,13 @@
                     <label for="present_address" class="form-label">Present Address <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-home"></i></span>
-                        <textarea class="form-control" id="present_address" name="present_address" rows="2" placeholder="Enter your complete address" required></textarea>
+                        <textarea class="form-control @error('name') is-invalid @enderror" id="present_address" name="present_address" rows="2" placeholder="Enter your complete address" required>{{ old('present_address') }}</textarea>
                     </div>
+                    @error('present_address')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <!-- Blood Group -->
@@ -119,7 +144,7 @@
                     <label for="blood_group" class="form-label">Blood Group <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-tint"></i></span>
-                        <select class="form-select" id="blood_group" name="blood_group" required>
+                        <select class="form-select @error('name') is-invalid @enderror" id="blood_group" name="blood_group" required>
                             <option value="">Select Blood Group</option>
                             <option>A+</option>
                             <option>A-</option>
@@ -131,6 +156,11 @@
                             <option>AB-</option>
                         </select>
                     </div>
+                    @error('blood_group')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <!-- Weight -->
@@ -138,9 +168,14 @@
                     <label for="weight" class="form-label">Weight (kg) <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-weight"></i></span>
-                        <input type="text" class="form-control" id="weight" name="weight" placeholder="00.00" required>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="weight" name="weight" value="{{ old('weight') }}" placeholder="00.00" required>
                         <span class="input-group-text">kg</span>
                     </div>
+                    @error('weight')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <!-- Last Donate -->
@@ -148,8 +183,13 @@
                     <label for="last_blood_donate" class="form-label">Last Blood Donation</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                        <input type="date" class="form-control" id="last_blood_donate" name="last_blood_donate">
+                        <input type="date" class="form-control @error('name') is-invalid @enderror" id="last_blood_donate" name="last_blood_donate" value="{{ old('last_blood_donate') }}">
                     </div>
+                    @error('last_blood_donate')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <!-- Photo Upload -->
@@ -161,8 +201,13 @@
                             <span>Click to upload profile photo</span>
                             <small>JPG, PNG or GIF (Max 2MB)</small>
                         </label>
-                        <input type="file" class="form-control" id="photo" name="photo" accept="image/*">
+                        <input type="file" class="form-control @error('name') is-invalid @enderror" id="photo" name="photo" accept="image/*">
                     </div>
+                    @error('photo')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     
                     <div class="image-preview" id="imagePreviewContainer">
                         <p class="text-muted mb-2">Profile Preview:</p>
@@ -175,11 +220,16 @@
                     <label for="loginPassword" class="form-label">Password <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                        <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Create a strong password" required>
+                        <input type="password" class="form-control @error('name') is-invalid @enderror" id="loginPassword" name="password" placeholder="Create a strong password" required>
                         <span class="input-group-text" id="toggleLoginPassword">
                             <i class="fas fa-eye"></i>
                         </span>
                     </div>
+                    @error('password')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <!-- Confirm Password -->
@@ -187,8 +237,13 @@
                     <label for="confirmPassword" class="form-label">Confirm Password <span class="text-danger">*</span></label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                        <input type="password" class="form-control" id="confirmPassword" name="password_confirmation" placeholder="Confirm password" required>
+                        <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="confirmPassword" name="password_confirmation" placeholder="Confirm password" required>
                     </div>
+                    @error('password_confirmation')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <!-- Terms and Conditions -->

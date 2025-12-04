@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -45,7 +47,7 @@ class AuthController extends Controller
             'last_blood_donate'    => $validated['last_blood_donate'] ?? null,
             'photo'                => $photoPath,
             'documents'            => $validated['documents'] ?? null,
-            'email_verify'         => 0,
+            'email_verify'         => 1,
             'status'               => 1,
             'node'                 => null,
             'blood_donate_number'  => 0,
@@ -55,5 +57,38 @@ class AuthController extends Controller
         // REDIRECT WITH SUCCESS
         return redirect()->route('user.login')->with('success', 'Account created successfully! Login Now.');
 
+    }
+    public function loginStore(Request $request){
+        $request->validate([
+            'email'    => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return back()->with('error', 'No account found with this email.');
+        }
+
+        if ($user->email_verify != 1) {
+            return back()->with('error', 'Please verify your email before logging in.');
+        }
+
+        if ($user->status != 1) {
+            return back()->with('error', 'Your account is inactive. Please contact support.');
+        }
+
+        if (!Hash::check($request->password, $user->password)) {
+            return back()->with('error', 'Incorrect password.');
+        }
+
+        Auth::login($user, $request->remember_me ? true : false);
+        
+        session([
+            'user_id'   => $user->id,
+            'user_name' => $user->name,
+        ]);
+
+        return redirect()->route('home')->with('success', 'Login successful!');
     }
 }

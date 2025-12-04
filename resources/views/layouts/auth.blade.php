@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title') | Blood App</title>
+    <title>@yield('title', 'Auth') | Blood App</title>
     <!-- Bootstrap 5 CSS -->
     <link href="{{ asset('auth/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Font Awesome for icons -->

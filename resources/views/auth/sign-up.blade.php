@@ -1,7 +1,5 @@
 @extends('layouts.auth')
 @section('title', 'Sign up')
-
-@section('content')
 @push('styles')
 <style>
     .col-lg-5.login-part{
@@ -9,6 +7,8 @@
     }
 </style>
 @endpush
+@section('content')
+
 <div class="auth-wrapper">
     <div class="auth-card">
 
@@ -316,21 +316,6 @@
             }
         });
         
-        // Toggle password visibility
-        togglePassword.addEventListener('click', function() {
-            const passwordInput = document.getElementById('loginPassword');
-            const icon = this.querySelector('i');
-            
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                icon.classList.remove('fa-eye');
-                icon.classList.add('fa-eye-slash');
-            } else {
-                passwordInput.type = 'password';
-                icon.classList.remove('fa-eye-slash');
-                icon.classList.add('fa-eye');
-            }
-        });
     });
 </script>
 @endpush
